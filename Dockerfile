@@ -1,5 +1,7 @@
 FROM tensorflow/tensorflow
 
+RUN pip install conda
+
 RUN conda update numpy
 
 RUN conda install --quiet --yes \
