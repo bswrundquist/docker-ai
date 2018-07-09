@@ -1,6 +1,7 @@
 FROM tensorflow/tensorflow
 
 USER root
+RUN apt-get install wget
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 RUN bash Miniconda3-latest-Linux-x86_64.sh
 USER $NB_UID
