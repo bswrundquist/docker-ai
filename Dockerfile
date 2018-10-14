@@ -1,5 +1,6 @@
 # anibali/pytorch:cuda-9.2
 ARG PYTORCH_IMAGE=anibali/pytorch:no-cuda
+
 FROM $PYTORCH_IMAGE
 
 USER root 
@@ -9,12 +10,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     build-essential
 
-RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
-/bin/bash Miniconda3-latest-Linux-x86_64.sh -f -b -p /opt/conda && \
-rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH /opt/conda/bin:$PATH
-
-RUN conda install python==3.6.5 --yes
+# RUN  conda update -n base conda
 
 RUN conda update numpy
 RUN pip install -U pip
@@ -63,3 +59,8 @@ RUN pip install papermill
 RUN pip install filterpy
 RUN pip install fbprophet
 
+RUN pip install tensorflow \
+    tensorboardX
+
+RUN pip install fire==0.1.3
+RUN pip install gym==0.10.5
