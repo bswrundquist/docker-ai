@@ -34,7 +34,7 @@ RUN apt-get install -y gcc
 
 RUN pip install lime 
 
-RUN conda install pyyaml mkl mkl-include setuptools cmake cffi typing
+RUN conda install pyyaml mkl mkl-include setuptools cmake cffi typing numba numexpr
 
 #RUN pip install pyro-ppl \
 #    gym[atari]
