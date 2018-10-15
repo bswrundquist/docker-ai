@@ -1,15 +1,12 @@
 sudo: enabled
-
 language: bash
-
 services:
 - docker
-
 after_success:
-- docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-- docker build -t bswrundquist/ai:gpu --build-arg PYTORCH_IMAGE=anibali/pytorch:cuda-9.2 .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker build -t bswrundquist/ai:gpu --build-arg PYTORCH_IMAGE=anibali/pytorch:cuda-9.2
+  .
 - docker push bswrundquist/ai:gpu
-
 env:
   global:
-    secure: cud4XZ1r2FxdTTV+4A/MffspRM7Vh9WMgyeLOJOV3l5/Wc9UHn1+uF8Qz/Z9SNtr/nUpqrAQPWpjkdYaMQpKFvHCRlVWpIz2yhm916PldwPREM6SOYjeMlTOM3pLPOtnJHZ4S67MbeIJtFjwxC5hc7OaZbIER1S+no2hjgq63e4Hdr16sqy830TfyhZpO0Nq5XkqtDn/Im58CN8F7HvpKAzmIWQVpzyMl7p82pPIL30TqmjCvoydo/FDwfHIqIAA/y/tqI4wmdg/TIy7s6bs4Kp9weE0HEK4AyN4mCoEn30uAZIqGIWaQx7tEz2Y8DKC0eqPdgsSe4Z9EdzTNK1hG0hGAG1uaGpMMngIjuqa2WaoMbUJeQbpzRoXVSLGjztQ4BcG//Wq5eGvACUswsWXZuBAdmbCt2yuR+gW183u/CZ9j4e7Vv6qSTiscOHH1lR5DipUW4d1Xk6bd9f4AMhsPS/0gikkEhX9VtCKHl6J42cEMryHMuyPu4brD/1UPjxGcJYiKsxFJYxkGr5oQwjTYF8/Zl/VCbB/zhy3ZDwz4mc3G4mTGXDFa/yPIT0C+hxpSsrIRPXJc1TbnAmq3p29Om5GTKGl8SVB3f+VRbSWkzPnirfaDXr9NXACWCI5NEnbzNCuMKcJURXIj0iRSp4qO8AA9pY2cB/RUEwyk1MVjzc=
+    secure: fYPsUt6AIFgJ/YRmgtYqMdE1fmVvtZ9x3QQoYvUo7B/vU4lU/cMTxYrpKxAGbAj0RX5+kKpYji4WITrQnZTfHW097s5IOVC0Q1YO4s4xeTo9eqLHJ/MrJhu6R7gswf9halsFOBiwLJAH05Whyu3vDKfqObhx3J3ij95ZFtrirFUv2OqG6FPwPoU5oFWtVTw0QpezgRahybC+QNF6CcA5I3oHFqqjR/eN2WE2nZSWWw9NaUbs3D7Wkut0nFDaeD7EtWqh1QyMQiSN6hp4PC0RDAWpAiR576x3nxMr2KUNAFQ1U7Jb8pdSNZfZ9SOBrP8UIKrokzXJ/uHjeazPuJMlhSbM6EKHB/Z/TNPP7tqREFS21MNfZvdrrOQO3vjuvMpCCUx/iy+tNjovuCAYR72MD9UH3jJ/edY9092qLbJnDfD8SOBeEdKlEEG9ci6GQ4z71OJwjNWggsvdfUsgGBEc8pCdx3Ct500W8/DCx34lfxkktB4fQSk0PBtbLzLrpBtFX5kzgE1QmogPixy34RXzLk/6PB8R5eLGwSP2iRFnrDio8xTAxS4njixEkCWdwG5fO7rI/YlyhE4xBydw7vpysbsy4k9oAZAlwfhoHO69WSBbsMUtXua93YWsxFSWboQGizdOulcpBTDLGT8nQBijZ0UlWgjZ9JfqCuWQ9K2I7Qo=
