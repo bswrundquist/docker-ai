@@ -1,5 +1,7 @@
 # docker-ai
 
+![](https://travis-ci.org/bswrundquist/docker-ai.svg?branch=master)
+
 ```bash
 docker build -t bswrundquist/ai:cpu .
 docker push bswrundquist/ai:cpu
