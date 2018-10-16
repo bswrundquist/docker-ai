@@ -16,8 +16,6 @@ RUN conda update numpy
 RUN pip install -U pip
 RUN pip install Cython
 
-RUN conda install pyarrow -c conda-forge
-
 RUN conda install --quiet --yes \
     'plotly' \
     'seaborn' \
@@ -64,3 +62,5 @@ RUN pip install tensorflow \
 
 RUN pip install fire==0.1.3
 RUN pip install gym==0.10.5
+
+RUN conda install pyarrow -c conda-forge
