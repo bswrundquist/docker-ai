@@ -1,4 +1,4 @@
-# anibali/pytorch:cuda-9.2
+# anibali/pytorch:cuda-10.0
 ARG PYTORCH_IMAGE=anibali/pytorch:no-cuda
 
 FROM $PYTORCH_IMAGE
