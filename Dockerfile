@@ -65,4 +65,12 @@ RUN pip install gym==0.10.5
 
 RUN conda install pyarrow -c conda-forge
 
-RUN pip install -U numpy
+RUN pip uninstall -y numpy
+RUN pip uninstall -y numpy 
+RUN pip uninstall -y numpy  # multiple version for some reason?... 
+
+RUN pip install numpy
+
+RUN conda install --channel conda-forge --yes boost boost-cpp pyarrow
+
+
