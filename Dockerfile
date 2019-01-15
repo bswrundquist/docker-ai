@@ -65,8 +65,4 @@ RUN pip install gym==0.10.5
 
 RUN conda install pyarrow -c conda-forge
 
-RUN pip uninstall -y numpy
-RUN pip install numpy
-
-RUN conda install -c conda-forge feather-format
-
+RUN pip install -U numpy
