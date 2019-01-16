@@ -63,6 +63,9 @@ RUN pip install tensorflow \
 RUN pip install fire==0.1.3
 RUN pip install gym==0.10.5
 
+RUN pip install python-jenkins
+RUN pip install ruamel.yaml
+
 RUN conda install pyarrow -c conda-forge
 
 RUN pip uninstall -y numpy
