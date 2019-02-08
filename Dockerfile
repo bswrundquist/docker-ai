@@ -76,4 +76,7 @@ RUN pip install numpy
 
 RUN conda install --channel conda-forge --yes boost boost-cpp pyarrow
 
+RUN pip install ruamel.yaml
+RUN pip install scikit-optimize
+
 
