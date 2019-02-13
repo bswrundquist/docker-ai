@@ -1,7 +1,4 @@
-# anibali/pytorch:cuda-10.0
-ARG PYTORCH_IMAGE=anibali/pytorch:no-cuda
-
-FROM $PYTORCH_IMAGE
+FROM anibali/pytorch:cuda-10.0
 
 USER root 
 
