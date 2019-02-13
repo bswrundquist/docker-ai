@@ -1,14 +1,20 @@
 sudo: enabled
+
 language: bash
+
 services:
 - docker
-after_success:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t bswrundquist/ai:cpu .
-- docker push bswrundquist/ai:cpu
-- docker build -t bswrundquist/ai:gpu --build-arg PYTORCH_IMAGE=anibali/pytorch:cuda-10.0
-  .
-- docker push bswrundquist/ai:gpu
+
 env:
   global:
-    secure: fYPsUt6AIFgJ/YRmgtYqMdE1fmVvtZ9x3QQoYvUo7B/vU4lU/cMTxYrpKxAGbAj0RX5+kKpYji4WITrQnZTfHW097s5IOVC0Q1YO4s4xeTo9eqLHJ/MrJhu6R7gswf9halsFOBiwLJAH05Whyu3vDKfqObhx3J3ij95ZFtrirFUv2OqG6FPwPoU5oFWtVTw0QpezgRahybC+QNF6CcA5I3oHFqqjR/eN2WE2nZSWWw9NaUbs3D7Wkut0nFDaeD7EtWqh1QyMQiSN6hp4PC0RDAWpAiR576x3nxMr2KUNAFQ1U7Jb8pdSNZfZ9SOBrP8UIKrokzXJ/uHjeazPuJMlhSbM6EKHB/Z/TNPP7tqREFS21MNfZvdrrOQO3vjuvMpCCUx/iy+tNjovuCAYR72MD9UH3jJ/edY9092qLbJnDfD8SOBeEdKlEEG9ci6GQ4z71OJwjNWggsvdfUsgGBEc8pCdx3Ct500W8/DCx34lfxkktB4fQSk0PBtbLzLrpBtFX5kzgE1QmogPixy34RXzLk/6PB8R5eLGwSP2iRFnrDio8xTAxS4njixEkCWdwG5fO7rI/YlyhE4xBydw7vpysbsy4k9oAZAlwfhoHO69WSBbsMUtXua93YWsxFSWboQGizdOulcpBTDLGT8nQBijZ0UlWgjZ9JfqCuWQ9K2I7Qo=
+    - secure: "fYPsUt6AIFgJ/YRmgtYqMdE1fmVvtZ9x3QQoYvUo7B/vU4lU/cMTxYrpKxAGbAj0RX5+kKpYji4WITrQnZTfHW097s5IOVC0Q1YO4s4xeTo9eqLHJ/MrJhu6R7gswf9halsFOBiwLJAH05Whyu3vDKfqObhx3J3ij95ZFtrirFUv2OqG6FPwPoU5oFWtVTw0QpezgRahybC+QNF6CcA5I3oHFqqjR/eN2WE2nZSWWw9NaUbs3D7Wkut0nFDaeD7EtWqh1QyMQiSN6hp4PC0RDAWpAiR576x3nxMr2KUNAFQ1U7Jb8pdSNZfZ9SOBrP8UIKrokzXJ/uHjeazPuJMlhSbM6EKHB/Z/TNPP7tqREFS21MNfZvdrrOQO3vjuvMpCCUx/iy+tNjovuCAYR72MD9UH3jJ/edY9092qLbJnDfD8SOBeEdKlEEG9ci6GQ4z71OJwjNWggsvdfUsgGBEc8pCdx3Ct500W8/DCx34lfxkktB4fQSk0PBtbLzLrpBtFX5kzgE1QmogPixy34RXzLk/6PB8R5eLGwSP2iRFnrDio8xTAxS4njixEkCWdwG5fO7rI/YlyhE4xBydw7vpysbsy4k9oAZAlwfhoHO69WSBbsMUtXua93YWsxFSWboQGizdOulcpBTDLGT8nQBijZ0UlWgjZ9JfqCuWQ9K2I7Qo="
+    - COMMIT=${TRAVIS_COMMIT::8}
+
+after_success:
+- export REPO=bswrundquist/ai
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
