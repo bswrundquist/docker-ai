@@ -66,6 +66,8 @@ RUN pip install ruamel.yaml
 RUN conda install pyarrow -c conda-forge
 RUN pip install feather-format
 
+RUN pip install jsonnet
+
 RUN pip uninstall -y numpy
 RUN pip uninstall -y numpy 
 RUN pip uninstall -y numpy  # multiple version for some reason?... 
