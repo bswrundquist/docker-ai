@@ -68,6 +68,8 @@ RUN pip install feather-format
 
 RUN pip install jsonnet
 
+RUN pip install xgboost
+
 RUN pip uninstall -y numpy
 RUN pip uninstall -y numpy 
 RUN pip uninstall -y numpy  # multiple version for some reason?... 
